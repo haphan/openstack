@@ -110,6 +110,15 @@ class Params extends AbstractParams
         ];
     }
 
+    public function ipAddress(): array
+    {
+        return [
+            'type'        => self::STRING_TYPE,
+            'location'    => self::JSON,
+            'description' => 'The floating IP address',
+        ];
+    }
+
     public function imageId(): array
     {
         return [

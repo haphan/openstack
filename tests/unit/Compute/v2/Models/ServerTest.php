@@ -95,6 +95,15 @@ class ServerTest extends TestCase
         $this->assertNull($this->server->reboot());
     }
 
+    public function test_it_removes_floating_ip()
+    {
+        $expectedJson = ['removeFloatingIp' => ['address' => '1.2.3.4']];
+
+        $this->setupMock('POST', 'servers/serverId/action', $expectedJson, [], new Response(202));
+
+        $this->assertNull($this->server->removeFloatingIp('1.2.3.4'));
+    }
+
     /**
      * @expectedException \RuntimeException
      */

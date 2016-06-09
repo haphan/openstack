@@ -459,4 +459,9 @@ class Server extends OperatorResource implements
     {
         $this->execute($this->api->deleteVolumeAttachments(), ['id' => $this->id, 'attachmentId' => $attachmentId]);
     }
+
+    public function removeFloatingIp(string $ipAddress)
+    {
+        $this->execute($this->api->removeFloatingIp(), ['id' => $this->id, 'address' => $ipAddress]);
+    }
 }

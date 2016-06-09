@@ -435,6 +435,19 @@ class Api extends AbstractApi
         ];
     }
 
+    public function removeFloatingIp(): array
+    {
+        return [
+            'method' => 'POST',
+            'path' => 'servers/{id}/action',
+            'jsonKey' => 'removeFloatingIp',
+            'params' => [
+                'id' => $this->params->urlId('server'),
+                'address' => $this->params->ipAddress()
+            ]
+        ];
+    }
+
     public function getAddresses(): array
     {
         return [
