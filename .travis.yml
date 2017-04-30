@@ -26,9 +26,9 @@ before_script:
   - vendor/bin/php-cs-fixer fix --dry-run --diff --level psr2 .
   - phpenv config-add ./xdebug.ini
 
-after_script:
-  - php vendor/bin/coveralls -v
+script:
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
 
-notifications:
-  email:
-    - jamie.hannaford@rackspace.com
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
