@@ -8,6 +8,7 @@ use OpenStack\Compute\v2\Models\Flavor;
 use OpenStack\Compute\v2\Models\HypervisorStatistic;
 use OpenStack\Compute\v2\Models\Image;
 use OpenStack\Compute\v2\Models\Keypair;
+use OpenStack\Compute\v2\Models\QuotaSet;
 use OpenStack\Compute\v2\Models\Server;
 use OpenStack\Compute\v2\Models\Hypervisor;
 use OpenStack\Compute\v2\Service;
@@ -16,6 +17,7 @@ use Prophecy\Argument;
 
 class ServiceTest extends TestCase
 {
+    /** @var Service */
     private $service;
 
     public function setUp()
@@ -164,5 +166,19 @@ class ServiceTest extends TestCase
         $hypervisor->retrieve();
 
         $this->assertInstanceOf(Hypervisor::class, $hypervisor);
+    }
+
+    public function test_it_gets_quota_set_details()
+    {
+        $this->client
+            ->request('GET', 'os-quota-sets/fake-tenant-id/detail', ['headers' => []])
+            ->shouldBeCalled()
+            ->willReturn($this->getFixture('quota-sets-get-detail'))
+            ;
+
+        $quotaSet = $this->service->getQuotaSet('fake-tenant-id', true);
+
+        $this->assertInstanceOf(QuotaSet::class, $quotaSet);
+        $this->assertEquals($quotaSet->cores['in_use'], 1111);
     }
 }
