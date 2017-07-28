@@ -43,6 +43,17 @@ class RequestSerializer
         return $options;
     }
 
+    /**
+     * @param Parameter $schema
+     * @param           $paramValue
+     * @param array     $options
+     *
+     * @uses  RequestSerializer::stockJson()
+     * @uses  RequestSerializer::stockHeader()
+     * @uses  RequestSerializer::stockRaw()
+     * @uses  RequestSerializer::stockQuery()
+     *
+     */
     private function callStockingMethod(Parameter $schema, $paramValue, array &$options)
     {
         $location = $schema->getLocation();

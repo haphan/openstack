@@ -156,7 +156,7 @@ EOT
 
     public function metadata($type, $remove = false)
     {
-        if ($remove == true) {
+        if ($remove === true) {
             $type = 'Remove-' . ucfirst($type);
         }
 

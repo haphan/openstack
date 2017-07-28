@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package OpenStack\Common\Resource
  */
-abstract class AbstractResource implements ResourceInterface, Serializable
+abstract class AbstractResource extends \stdClass implements ResourceInterface, Serializable
 {
     /**
      * The JSON key that indicates how the API nests singular resources. For example, when

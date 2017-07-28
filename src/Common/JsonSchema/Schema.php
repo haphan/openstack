@@ -29,7 +29,7 @@ class Schema
         return $paths;
     }
 
-    public function normalizeObject($subject, array $aliases): \stdClass
+    public function normalizeObject(\stdClass $subject, array $aliases): \stdClass
     {
         $out = new \stdClass;
 

@@ -49,7 +49,7 @@ class JsonPatch extends \OpenStack\Common\JsonSchema\JsonPatch
         $changes = [];
 
         if ($srcStruct != $desStruct) {
-            if ($diff = $this->arrayDiff($desStruct, $srcStruct)) {
+            if ($this->arrayDiff($desStruct, $srcStruct)) {
                 $changes[] = $this->makePatch(self::OP_REPLACE, $path, $desStruct);
             }
             foreach ($srcStruct as $key => $val) {
